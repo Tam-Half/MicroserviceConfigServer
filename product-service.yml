@@ -1,31 +1,36 @@
-# ==== Server ====
-server.port=8082
-spring.application.name=product-service
+server:
+  port: 8082
 
-# ==== Datasource (SQL Server) ====
-spring.datasource.url=jdbc:sqlserver://localhost:1433;databaseName=ProductDB;encrypt=true;trustServerCertificate=true
-spring.datasource.username=sa
-spring.datasource.password=Root1234
-spring.datasource.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver
+spring:
+  application:
+    name: product-service
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=ProductDB;encrypt=true;trustServerCertificate=true
+    username: sa
+    password: Root1234
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+  rabbitmq:
+    host: ${SPRING_RABBITMQ_HOST:localhost}
+    port: ${SPRING_RABBITMQ_PORT:5672}
+    username: ${SPRING_RABBITMQ_USERNAME:guest}
+    password: ${SPRING_RABBITMQ_PASSWORD:guest}
+  redis:
+    host: localhost
+    port: 6379
+  cache:
+    type: redis
 
-# ==== JPA / Hibernate ====
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.format_sql=true
-
-# ==== Eureka Client ====
-eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
-eureka.client.eureka-server-read-timeout=5000
-eureka.client.eureka-server-connect-timeout=5000
-eureka.instance.prefer-ip-address=true
-
-# ==== RabbitMQ ====
-spring.rabbitmq.host=${SPRING_RABBITMQ_HOST:localhost}
-spring.rabbitmq.port=${SPRING_RABBITMQ_PORT:5672}
-spring.rabbitmq.username=${SPRING_RABBITMQ_USERNAME:guest}
-spring.rabbitmq.password=${SPRING_RABBITMQ_PASSWORD:guest}
-
-# ==== Redis (Cache) ====
-spring.redis.host=localhost
-spring.redis.port=6379
-spring.cache.type=redis
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    eureka-server-read-timeout: 5000
+    eureka-server-connect-timeout: 5000
+  instance:
+    prefer-ip-address: true
