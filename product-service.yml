@@ -21,9 +21,11 @@ spring:
     username: ${SPRING_RABBITMQ_USERNAME:guest}
     password: ${SPRING_RABBITMQ_PASSWORD:guest}
   spring:
-    redis:
-      host: redis-sentinel-node-0.redis-sentinel-headless.storage-redis.svc.cluster.local
-      port: 6379
-      password: redispsswd
+   redis:
+     host: redis-sentinel-node-0.redis-sentinel-headless.storage-redis.svc.cluster.local
+     port: 6379
+     password: redispsswd
   cache:
     type: redis
+
+
