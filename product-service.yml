@@ -6,7 +6,7 @@ spring:
     name: product-service
 
   datasource:
-    url: jdbc:sqlserver://192.168.0.127:1433;databaseName=ProductDB;encrypt=true;trustServerCertificate=true
+    url: jdbc:sqlserver:localhost:1433;databaseName=ProductDB;encrypt=true;trustServerCertificate=true
     username: sa
     password: Root1234
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
@@ -32,6 +32,13 @@ spring:
         - redis-sentinel-node-1.redis-sentinel-headless.storage-redis.svc.cluster.local:26379
         - redis-sentinel-node-2.redis-sentinel-headless.storage-redis.svc.cluster.local:26379
     password: redispsswd
+    timeout: 2000ms
+    lettuce:
+      shutdown-timeout: 100ms
 
   cache:
     type: redis
+    redis:
+      time-to-live: 600000  
+
+
