@@ -6,7 +6,7 @@ spring:
     name: product-service
 
   datasource:
-    url: jdbc:sqlserver://192.168.1.172:14330;databaseName=ProductDB;encrypt=true;trustServerCertificate=true
+    url: jdbc:sqlserver://192.168.1.174:14330;databaseName=ProductDB;encrypt=true;trustServerCertificate=true
     username: sa
     password: Root1234
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
