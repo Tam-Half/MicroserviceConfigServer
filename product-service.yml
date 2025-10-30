@@ -1,29 +1,24 @@
 server:
   port: 8082
-
 spring:
   application:
     name: product-service
-
   datasource:
     url: jdbc:sqlserver://192.168.1.174:14330;databaseName=ProductDB;encrypt=true;trustServerCertificate=true
     username: sa
     password: Root1234
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
     properties:
       hibernate.format_sql: true
-
   rabbitmq:
     host: ${SPRING_RABBITMQ_HOST:localhost}
     port: ${SPRING_RABBITMQ_PORT:5672}
     username: ${SPRING_RABBITMQ_USERNAME:guest}
     password: ${SPRING_RABBITMQ_PASSWORD:guest}
-
   redis:
     sentinel:
       master: mymaster
@@ -35,10 +30,18 @@ spring:
     timeout: 2000ms
     lettuce:
       shutdown-timeout: 100ms
-
   cache:
     type: redis
     redis:
-      time-to-live: 600000  
+      time-to-live: 600000
 
-
+# THÊM PHẦN NÀY
+logging:
+  level:
+    root: INFO
+    org.springframework.cache: TRACE           # Log cache operations
+    org.springframework.data.redis: DEBUG      # Log Redis operations
+    io.lettuce.core: DEBUG                     # Log Lettuce (Redis client)
+    intern.lp: DEBUG          # Thay bằng package của bạn (vd: com.yourcompany.productservice)
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
