@@ -1,0 +1,68 @@
+server:
+  port: 8089
+
+spring:
+  application:
+    name: notifycation-service
+
+  # === Datasource (SQL Server) ===
+  datasource:
+    url: jdbc:sqlserver://${DB_HOST:14330};databaseName=NotifycationDB;encrypt=true;trustServerCertificate=true
+    username: ${DB_USER}
+    password: ${DB_PASS}
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+
+  # === Mail Configuration ===
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}        # Điền biến môi trường hoặc trực tiếp
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+      mail.smtp.connectiontimeout: 5000
+      mail.smtp.timeout: 5000
+      mail.smtp.writetimeout: 5000
+
+  # === RabbitMQ (bật khi cần) ===
+  rabbitmq:
+    host: ${SPRING_RABBITMQ_HOST:localhost}
+    port: ${SPRING_RABBITMQ_PORT:5672}
+    username: ${SPRING_RABBITMQ_USERNAME:guest}
+    password: ${SPRING_RABBITMQ_PASSWORD:guest}
+
+  # === Redis Sentinel (bật khi cần) ===
+  # redis:
+  #   sentinel:
+  #     master: mymaster
+  #     nodes:
+  #       - redis-sentinel-node-0.redis-sentinel-headless.storage-redis.svc.cluster.local:26379
+  #       - redis-sentinel-node-1.redis-sentinel-headless.storage-redis.svc.cluster.local:26379
+  #       - redis-sentinel-node-2.redis-sentinel-headless.storage-redis.svc.cluster.local:26379
+  #   password: ${REDIS_PASSWORD}
+  #   timeout: 2000ms
+  #   lettuce:
+  #     shutdown-timeout: 100ms
+  #   cache:
+  #     type: redis
+  #     redis:
+  #       time-to-live: 600000
+
+# === Logging ===
+# logging:
+#   level:
+#     root: INFO
+#     org.springframework.cache: TRACE           # Log cache operations
+#     org.springframework.data.redis: DEBUG      # Log Redis operations
+#     io.lettuce.core: DEBUG                     # Log Lettuce (Redis client)
+#     intern.lp: DEBUG                           # Thay bằng package của bạn
+#   pattern:
+#     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
