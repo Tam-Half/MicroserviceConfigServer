@@ -4,7 +4,7 @@ spring:
   application:
     name: inventory-service
   datasource:
-    url: jdbc:sqlserver://${DB_HOST}:14330;databaseName=InventoryDB;encrypt=true;trustServerCertificate=true
+    url: jdbc:sqlserver://${DB_HOST}:14330;databaseName=DB;encrypt=true;trustServerCertificate=true
     username: ${DB_USER}
     password: ${DB_PASS}
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
