@@ -1,5 +1,6 @@
 server:
   port: 8087
+
 spring:
   application:
     name: inventory-service
@@ -13,36 +14,26 @@ spring:
       ddl-auto: update
     show-sql: true
     properties:
-      hibernate.format_sql: true
+      hibernate:
+        format_sql: true
   rabbitmq:
-    host:
-    port: 
-    username: 
+    host: rabbitmq.rabbitmq.svc.cluster.local   # THAY = TÊN SERVICE THẬT
+    port: 5672
+    username: testuser
     password: testpass
     virtual-host: /
-#   redis:
-#     sentinel:
-#       master: mymaster
-#       nodes:
-#         - redis-sentinel-node-0.redis-sentinel-headless.storage-redis.svc.cluster.local:26379
-#         - redis-sentinel-node-1.redis-sentinel-headless.storage-redis.svc.cluster.local:26379
-#         - redis-sentinel-node-2.redis-sentinel-headless.storage-redis.svc.cluster.local:26379
-#     password: redispsswd
-#     timeout: 2000ms
-#     lettuce:
-#       shutdown-timeout: 100ms
-#   cache:
-#     type: redis
-#     redis:
-#       time-to-live: 600000
+    connection-timeout: 5000
 
-# # THÊM PHẦN NÀY
-# logging:
-#   level:
-#     root: INFO
-#     org.springframework.cache: TRACE           # Log cache operations
-#     org.springframework.data.redis: DEBUG      # Log Redis operations
-#     io.lettuce.core: DEBUG                     # Log Lettuce (Redis client)
-#     intern.lp: DEBUG          # Thay bằng package của bạn (vd: com.yourcompany.productservice)
-#   pattern:
-#     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+logging:
+  level:
+    org.springframework.amqp: DEBUG
+    com.rabbitmq: DEBUG
+    intern.lp: DEBUG
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  health:
+    rabbit:
+      enabled: true
