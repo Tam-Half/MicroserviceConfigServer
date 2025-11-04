@@ -15,10 +15,10 @@ spring:
     properties:
       hibernate.format_sql: true
   rabbitmq:
-    host: ${SPRING_RABBITMQ_HOST}
-    port: ${SPRING_RABBITMQ_PORT}
-    username: ${SPRING_RABBITMQ_USERNAME}
-    password: ${SPRING_RABBITMQ_PASSWORD}
+    host: my-rabbit.rabbitmq.svc.cluster.local
+    port: 5672
+    username: testuser
+    password: testpass
     virtual-host: /
 #   redis:
 #     sentinel:
