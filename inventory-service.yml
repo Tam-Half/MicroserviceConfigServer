@@ -17,7 +17,7 @@ spring:
       hibernate:
         format_sql: true
   rabbitmq:
-    host: rabbitmq.rabbitmq.svc.cluster.local   # THAY = TÊN SERVICE THẬT
+    host: my-rabbit.rabbitmq.svc.cluster.local
     port: 5672
     username: testuser
     password: testpass
