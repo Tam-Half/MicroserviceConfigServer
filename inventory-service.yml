@@ -17,12 +17,11 @@ spring:
       hibernate:
         format_sql: true
   rabbitmq:
-    host: rabbitmq.rabbitmq.svc.cluster.local   # THAY = TÊN SERVICE THẬT
-    port: 5672
-    username: testuser
-    password: testpass
+    host: ${SPRING_RABBITMQ_HOST}
+    port: ${SPRING_RABBITMQ_PORT}
+    username: ${SPRING_RABBITMQ_USERNAME}
+    password: ${SPRING_RABBITMQ_PASSWORD}
     virtual-host: /
-    connection-timeout: 5000
 
 # TẮT CPU METRICS ĐỂ TRÁNH NPE TRONG K8S
 management:
