@@ -1,0 +1,48 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: shipping-service
+  datasource:
+    url: jdbc:sqlserver://${DB_HOST}:14330;databaseName=ShippingDB;encrypt=true;trustServerCertificate=true
+    username: ${DB_USER}
+    password: ${DB_PASS}
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+  rabbitmq:
+    host: ${SPRING_RABBITMQ_HOST}
+    port: ${SPRING_RABBITMQ_PORT}
+    username: ${SPRING_RABBITMQ_USERNAME}
+    password: ${SPRING_RABBITMQ_PASSWORD}
+    virtual-host: /
+#   redis:
+#     sentinel:
+#       master: mymaster
+#       nodes:
+#         - redis-sentinel-node-0.redis-sentinel-headless.storage-redis.svc.cluster.local:26379
+#         - redis-sentinel-node-1.redis-sentinel-headless.storage-redis.svc.cluster.local:26379
+#         - redis-sentinel-node-2.redis-sentinel-headless.storage-redis.svc.cluster.local:26379
+#     password: redispsswd
+#     timeout: 2000ms
+#     lettuce:
+#       shutdown-timeout: 100ms
+#   cache:
+#     type: redis
+#     redis:
+#       time-to-live: 600000
+
+# # THÊM PHẦN NÀY
+# logging:
+#   level:
+#     root: INFO
+#     org.springframework.cache: TRACE           # Log cache operations
+#     org.springframework.data.redis: DEBUG      # Log Redis operations
+#     io.lettuce.core: DEBUG                     # Log Lettuce (Redis client)
+#     intern.lp: DEBUG          # Thay bằng package của bạn (vd: com.yourcompany.productservice)
+#   pattern:
+#     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
