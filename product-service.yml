@@ -4,7 +4,7 @@ spring:
   application:
     name: product-service
   datasource:
-    url: jdbc:sqlserver://${DB_HOST}:11934;databaseName=ProductDB;encrypt=true;trustServerCertificate=true
+    url: jdbc:sqlserver://${DB_HOST}:11525;databaseName=ProductDB;encrypt=true;trustServerCertificate=true
     username: ${DB_USER}
     password: ${DB_PASS}
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
@@ -23,9 +23,8 @@ spring:
     sentinel:
       master: mymaster
       nodes:
-        - redis-sentinel-node-0.redis-sentinel-headless.storage-redis.svc.cluster.local:26379
-        - redis-sentinel-node-1.redis-sentinel-headless.storage-redis.svc.cluster.local:26379
-        - redis-sentinel-node-2.redis-sentinel-headless.storage-redis.svc.cluster.local:26379
+        - redis-sentinel.redis-caches.svc.cluster.local:26379
+      
     password: redispsswd
     timeout: 2000ms
     lettuce:
