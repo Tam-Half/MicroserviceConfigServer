@@ -4,7 +4,7 @@ spring:
   application:
     name: product-service
   datasource:
-    url: jdbc:sqlserver://${DB_HOST}:11525;databaseName=ProductDB;encrypt=true;trustServerCertificate=true
+    url: jdbc:sqlserver://${DB_HOST}:16784;databaseName=ProductDB;encrypt=true;trustServerCertificate=true
     username: ${DB_USER}
     password: ${DB_PASS}
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
